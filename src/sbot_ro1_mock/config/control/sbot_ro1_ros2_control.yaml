@@ -1,0 +1,84 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100
+
+    joint_state_broadcaster:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+    joint_trajectory_admittance_controller:
+      type: joint_trajectory_admittance_controller/JointTrajectoryAdmittanceController
+
+    joint_velocity_controller:
+      type: joint_velocity_controller/JointVelocityController
+
+    velocity_force_controller:
+      type: velocity_force_controller/VelocityForceController
+
+joint_trajectory_admittance_controller:
+  ros__parameters:
+    planning_group_name: manipulator
+    sensor_frames: ["tool0"]
+    ee_frames: ["grasp_link"]
+    ft_sensor_name: ""
+    stop_accelerations: [30.0, 30.0, 30.0, 30.0, 30.0, 30.0]
+    ft_cutoff_frequency_ratio: 1.0
+    ft_force_deadband: 0.0
+    ft_torque_deadband: 0.0
+    default_path_tolerance: 0.5
+
+joint_velocity_controller:
+  ros__parameters:
+    planning_group_name: manipulator
+    command_interfaces: ["position"]
+    max_joint_velocity:
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+    max_joint_acceleration:
+      - 3.0
+      - 3.0
+      - 3.0
+      - 3.0
+      - 3.0
+      - 3.0
+
+velocity_force_controller:
+  ros__parameters:
+    planning_group_name: manipulator
+    sensor_frame: grasp_link
+    ee_frame: grasp_link
+    ft_sensor_name: ""
+    ft_force_deadband: 0.0
+    ft_torque_deadband: 0.0
+    stop_accelerations: [30.0, 30.0, 30.0, 30.0, 30.0, 30.0]
+    max_joint_velocity:
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+      - 1.0
+    max_joint_acceleration:
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+      - 2.0
+    max_cartesian_velocity:
+      - 0.25
+      - 0.25
+      - 0.25
+      - 1.0
+      - 1.0
+      - 1.0
+    max_cartesian_acceleration:
+      - 2.0
+      - 2.0
+      - 2.0
+      - 4.0
+      - 4.0
+      - 4.0

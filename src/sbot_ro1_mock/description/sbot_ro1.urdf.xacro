@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="sbot">
+  <xacro:arg name="use_fake_hardware" default="true"/>
+  <xacro:arg name="prefix" default=""/>
+  <xacro:arg name="use_mock_hardware" default="true"/>
+  <xacro:arg name="mock_sensor_commands" default="false"/>
+  <xacro:arg name="sim_gazebo_classic" default="false"/>
+  <xacro:arg name="sim_gazebo" default="false"/>
+  <xacro:arg name="simulation_controllers" default=""/>
+
+  <link name="world"/>
+
+  <xacro:include filename="$(find standard_bots_description)/urdf/sbot/sbot_macro.xacro"/>
+  <xacro:sbot prefix="$(arg prefix)" parent="world">
+    <origin xyz="0 0 0" rpy="0 0 -1.5707963267948966"/>
+  </xacro:sbot>
+
+  <link name="grasp_link"/>
+  <joint name="grasp_link_joint" type="fixed">
+    <parent link="tool0"/>
+    <child link="grasp_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <xacro:include filename="$(find standard_bots_description)/urdf/sbot/sbot_macro.ros2_control.xacro"/>
+  <xacro:sbot_ros2_control
+    name="SbotRO1System"
+    prefix="$(arg prefix)"
+    use_mock_hardware="$(arg use_fake_hardware)"
+    mock_sensor_commands="$(arg mock_sensor_commands)"
+    sim_gazebo_classic="$(arg sim_gazebo_classic)"
+    sim_gazebo="$(arg sim_gazebo)"
+    simulation_controllers="$(arg simulation_controllers)"/>
+</robot>
