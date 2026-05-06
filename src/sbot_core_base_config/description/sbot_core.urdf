@@ -1,0 +1,246 @@
+<?xml version="1.0" ?>
+<!--
+  Standard Bots Core (RO1) URDF — primitive-mesh edition.
+
+  Source: standardbots/ros2-realtime-api src/robot_urdfs/core.urdf
+  All <mesh> references in the upstream file resolve via package://standard_bots_description,
+  which is not in this workspace. They have been replaced with sized cylinders/boxes derived
+  from the link extents implied by adjacent joint origins. Inertials, joint origins, axes,
+  and limits are unchanged.
+
+  Also stripped: the upstream <ros2_control> block (uses standard_bots_hardware_interface
+  plugin) and the scene_environment link. Mock ros2_control is provided separately by
+  sbot_core.ros2_control.xacro.
+-->
+<robot name="sbot">
+  <link name="world"/>
+
+  <!-- base_link — pedestal, ~17cm tall to joint0 -->
+  <link name="base_link">
+    <inertial>
+      <mass value="1.3899"/>
+      <origin rpy="0 0 0" xyz="3.5615e-07 -3.5615e-07 0.038531"/>
+      <inertia ixx="0.0032902" ixy="-4.9417e-13" ixz="6.3717e-08" iyy="0.0032903" iyz="-6.3717e-08" izz="0.0056833"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.075"/>
+      <geometry><cylinder radius="0.065" length="0.15"/></geometry>
+      <material name="sbot_grey"><color rgba="0.86667 0.86667 0.8902 1"/></material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.075"/>
+      <geometry><cylinder radius="0.06" length="0.14"/></geometry>
+    </collision>
+  </link>
+
+  <!-- shoulder_link — extends in -X to joint1 at x=-0.1885 -->
+  <link name="shoulder_link">
+    <inertial>
+      <mass value="7.48000886526123"/>
+      <origin rpy="0 0 0" xyz="-0.0155060034853395 5.31133813950851e-06 0.00202665932285853"/>
+      <inertia ixx="0.0290130325419372" ixy="1.13558315803054e-06" ixz="-0.000123670453068877" iyy="0.0296005432331486" iyz="7.83938203517328e-08" izz="0.0236795403640951"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 1.5707963 0" xyz="-0.09 0 0"/>
+      <geometry><cylinder radius="0.065" length="0.18"/></geometry>
+      <material name="sbot_grey"/>
+    </visual>
+    <collision>
+      <origin rpy="0 1.5707963 0" xyz="-0.09 0 0"/>
+      <geometry><cylinder radius="0.06" length="0.16"/></geometry>
+    </collision>
+  </link>
+
+  <!-- upper_arm_link — extends along +Z to joint2 at z=0.5907 -->
+  <link name="upper_arm_link">
+    <inertial>
+      <mass value="13.27"/>
+      <origin rpy="0 0 0" xyz="0.00037048 -1.0498e-06 0.24431"/>
+      <inertia ixx="0.67313" ixy="1.0675e-07" ixz="-0.0075436" iyy="0.67925" iyz="-4.7892e-06" izz="0.037155"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.295"/>
+      <geometry><cylinder radius="0.055" length="0.55"/></geometry>
+      <material name="sbot_grey"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.295"/>
+      <geometry><cylinder radius="0.05" length="0.52"/></geometry>
+    </collision>
+  </link>
+
+  <!-- forearm_link — extends along +Z to joint3 at z=0.5494 -->
+  <link name="forearm_link">
+    <inertial>
+      <mass value="3.99015526098533"/>
+      <origin rpy="0 0 0" xyz="-0.00856270285673266 -0.000680803891636816 0.284368892424253"/>
+      <inertia ixx="0.183498055568642" ixy="5.42912788104132e-05" ixz="-0.00223976271110487" iyy="0.185228712942926" iyz="0.000226731091687184" izz="0.00597848990228215"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.275"/>
+      <geometry><cylinder radius="0.045" length="0.50"/></geometry>
+      <material name="sbot_grey"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.275"/>
+      <geometry><cylinder radius="0.04" length="0.47"/></geometry>
+    </collision>
+  </link>
+
+  <!-- wrist_1_link — extends along +Z to joint4 at z=0.1498 -->
+  <link name="wrist_1_link">
+    <inertial>
+      <mass value="2.34998758206812"/>
+      <origin rpy="0 0 0" xyz="0.00603382118543186 5.30466422090696e-05 0.00949427052813601"/>
+      <inertia ixx="0.00536507490753713" ixy="-1.22216192461661e-06" ixz="7.53472115754737e-05" iyy="0.00569170816671894" iyz="-2.77149728808046e-06" izz="0.00279356137797234"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.07"/>
+      <geometry><cylinder radius="0.045" length="0.13"/></geometry>
+      <material name="sbot_grey"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.07"/>
+      <geometry><cylinder radius="0.04" length="0.11"/></geometry>
+    </collision>
+  </link>
+
+  <!-- wrist_2_link — extends along -X to joint5 at x=-0.1621 -->
+  <link name="wrist_2_link">
+    <inertial>
+      <mass value="2.34998758206813"/>
+      <origin rpy="0 0 0" xyz="-0.00949427052813648 -5.30466422084472e-05 -0.00603382118543183"/>
+      <inertia ixx="0.00279356137797234" ixy="-2.77149728807979e-06" ixz="7.53472115754781e-05" iyy="0.00569170816671896" iyz="-1.2221619246072e-06" izz="0.00536507490753716"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 1.5707963 0" xyz="-0.075 0 0"/>
+      <geometry><cylinder radius="0.045" length="0.14"/></geometry>
+      <material name="sbot_grey"/>
+    </visual>
+    <collision>
+      <origin rpy="0 1.5707963 0" xyz="-0.075 0 0"/>
+      <geometry><cylinder radius="0.04" length="0.12"/></geometry>
+    </collision>
+  </link>
+
+  <!-- wrist_3_link — small wrist tip, mass center near +X 0.048 -->
+  <link name="wrist_3_link">
+    <inertial>
+      <mass value="0.572775624406093"/>
+      <origin rpy="0 0 0" xyz="0.0477321679131623 0.00028403740032851 -0.00497796255034433"/>
+      <inertia ixx="0.000707097246403867" ixy="7.23198267535677e-06" ixz="4.16184287898907e-05" iyy="0.000679826517402998" iyz="-2.50233694519018e-06" izz="0.000615679707653451"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 1.5707963 0" xyz="0.025 0 0"/>
+      <geometry><cylinder radius="0.035" length="0.06"/></geometry>
+      <material name="sbot_grey_dark"><color rgba="0.79216 0.81961 0.93333 1"/></material>
+    </visual>
+    <collision>
+      <origin rpy="0 1.5707963 0" xyz="0.025 0 0"/>
+      <geometry><cylinder radius="0.03" length="0.05"/></geometry>
+    </collision>
+  </link>
+
+  <!-- wrist_3_cable_link — tiny cable accessory, kept for kinematic completeness -->
+  <link name="wrist_3_cable_link">
+    <inertial>
+      <mass value="0.0080607"/>
+      <origin rpy="0 0 0" xyz="0.019129 0.02812 0.040316"/>
+      <inertia ixx="1.4286e-05" ixy="3.3605e-06" ixz="-2.5233e-06" iyy="9.3785e-06" iyz="5.8377e-06" izz="9.3754e-06"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.02 0.025 0.04"/>
+      <geometry><box size="0.04 0.04 0.04"/></geometry>
+      <material name="cable_grey"><color rgba="0.25098 0.25098 0.25098 1"/></material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.02 0.025 0.04"/>
+      <geometry><box size="0.035 0.035 0.035"/></geometry>
+    </collision>
+  </link>
+
+  <!-- Standard ROS-Industrial frames (no geometry) -->
+  <link name="tool0"/>
+  <link name="base"/>
+  <link name="flange"/>
+
+  <!-- JOINTS — unchanged from upstream -->
+  <joint name="base_joint" type="fixed">
+    <origin rpy="0 0 -1.5707963267948966" xyz="0 0 0"/>
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint>
+
+  <joint name="joint0" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0.172"/>
+    <parent link="base_link"/>
+    <child link="shoulder_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="346.0" lower="-6.283185307179586" upper="6.283185307179586" velocity="4.71238898038469"/>
+  </joint>
+
+  <joint name="joint1" type="revolute">
+    <origin rpy="0 0 0" xyz="-0.1885 0 0"/>
+    <parent link="shoulder_link"/>
+    <child link="upper_arm_link"/>
+    <axis xyz="-1 0 0"/>
+    <limit effort="346.0" lower="-2.356194490192345" upper="2.356194490192345" velocity="4.71238898038469"/>
+  </joint>
+
+  <joint name="joint2" type="revolute">
+    <origin rpy="0 0 0" xyz="0.14635000035763 0 0.5906999941826"/>
+    <parent link="upper_arm_link"/>
+    <child link="forearm_link"/>
+    <axis xyz="-1 0 0"/>
+    <limit effort="163.0" lower="-2.8797932657906435" upper="2.8797932657906435" velocity="5.026548245743669"/>
+  </joint>
+
+  <joint name="joint3" type="revolute">
+    <origin rpy="0 0 0" xyz="-0.1498 0 0.5494"/>
+    <parent link="forearm_link"/>
+    <child link="wrist_1_link"/>
+    <axis xyz="-1 0 0"/>
+    <limit effort="63.0" lower="-6.283185307179586" upper="6.283185307179586" velocity="6.806784082777885"/>
+  </joint>
+
+  <joint name="joint4" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0.1498"/>
+    <parent link="wrist_1_link"/>
+    <child link="wrist_2_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="63.0" lower="-6.283185307179586" upper="6.283185307179586" velocity="6.806784082777885"/>
+  </joint>
+
+  <joint name="joint5" type="revolute">
+    <origin rpy="0 0 0" xyz="-0.1621 0 0"/>
+    <parent link="wrist_2_link"/>
+    <child link="wrist_3_link"/>
+    <axis xyz="-1 0 0"/>
+    <limit effort="63.0" lower="-6.283185307179586" upper="6.283185307179586" velocity="6.806784082777885"/>
+  </joint>
+
+  <joint name="joint5-tool0" type="fixed">
+    <parent link="wrist_3_link"/>
+    <child link="tool0"/>
+    <origin rpy="1.5707963267948966 0 -1.5707963267948966" xyz="0 0 0"/>
+  </joint>
+
+  <joint name="joint5_cable" type="fixed">
+    <parent link="wrist_3_link"/>
+    <child link="wrist_3_cable_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <axis xyz="0 0 0"/>
+  </joint>
+
+  <joint name="base_link-base_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="base_link"/>
+    <child link="base"/>
+  </joint>
+
+  <joint name="tool0-flange_joint" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="tool0"/>
+    <child link="flange"/>
+  </joint>
+</robot>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="sbot_core_ros2_control" params="name use_fake_hardware:=true">
+    <ros2_control name="${name}" type="system">
+      <hardware>
+        <plugin>mock_components/GenericSystem</plugin>
+      </hardware>
+
+      <xacro:macro name="sbot_joint" params="joint_name">
+        <joint name="${joint_name}">
+          <command_interface name="position"/>
+          <state_interface name="position">
+            <param name="initial_value">0.0</param>
+          </state_interface>
+          <state_interface name="velocity"/>
+        </joint>
+      </xacro:macro>
+
+      <xacro:sbot_joint joint_name="joint0"/>
+      <xacro:sbot_joint joint_name="joint1"/>
+      <xacro:sbot_joint joint_name="joint2"/>
+      <xacro:sbot_joint joint_name="joint3"/>
+      <xacro:sbot_joint joint_name="joint4"/>
+      <xacro:sbot_joint joint_name="joint5"/>
+    </ros2_control>
+  </xacro:macro>
+</robot>

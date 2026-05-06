@@ -1,0 +1,3 @@
+[submodule "src/external_dependencies/standardbots_ros2_realtime_api"]
+	path = src/external_dependencies/standardbots_ros2_realtime_api
+	url = https://github.com/standardbots/ros2-realtime-api.git

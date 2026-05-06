@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="sbot">
+  <xacro:arg name="use_fake_hardware" default="true"/>
+
+  <xacro:include filename="$(find sbot_core_base_config)/description/sbot_core.urdf"/>
+
+  <link name="grasp_link"/>
+  <joint name="grasp_link_joint" type="fixed">
+    <parent link="tool0"/>
+    <child link="grasp_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <xacro:include filename="$(find sbot_core_base_config)/description/sbot_core.ros2_control.xacro"/>
+  <xacro:sbot_core_ros2_control name="SbotCoreSystem" use_fake_hardware="$(arg use_fake_hardware)"/>
+</robot>

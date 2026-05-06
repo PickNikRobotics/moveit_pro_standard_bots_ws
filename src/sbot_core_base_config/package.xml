@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>sbot_core_base_config</name>
+  <version>0.0.1</version>
+  <description>MoveIt Pro mock configuration for the Standard Bots Core (RO1) 6-DOF arm.</description>
+  <maintainer email="sanchit.badamikar@picknik.ai">Sanchit Badamikar</maintainer>
+  <license>BSD-3-Clause</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
