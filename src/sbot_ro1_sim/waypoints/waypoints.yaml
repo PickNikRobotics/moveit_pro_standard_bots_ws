@@ -1,0 +1,50 @@
+- name: Home
+  joint_group_names:
+    - manipulator
+  joint_state:
+    header:
+      frame_id: world
+      stamp:
+        sec: 0
+        nanosec: 0
+    name: [joint0, joint1, joint2, joint3, joint4, joint5]
+    position: [0.0, -0.6, 1.2, -0.6, 0.0, 0.0]
+    velocity: []
+    effort: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        sec: 0
+        nanosec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  description: 'Elbow-up tucked pose, distinct from the mock_components 0.0 startup state.'
+  favorite: true
+- name: Ready
+  joint_group_names:
+    - manipulator
+  joint_state:
+    header:
+      frame_id: world
+      stamp:
+        sec: 0
+        nanosec: 0
+    name: [joint0, joint1, joint2, joint3, joint4, joint5]
+    position: [0.7, -1.2, 1.6, -0.4, 0.5, 0.0]
+    velocity: []
+    effort: []
+  multi_dof_joint_state:
+    header:
+      frame_id: ''
+      stamp:
+        sec: 0
+        nanosec: 0
+    joint_names: []
+    transforms: []
+    twist: []
+    wrench: []
+  description: 'Folded elbow-up pose for motion-planning tests.'
+  favorite: true

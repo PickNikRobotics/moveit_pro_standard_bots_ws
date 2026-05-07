@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>sbot_ro1_sim</name>
+  <version>0.0.1</version>
+  <description>MoveIt Pro physics-simulation configuration for the Standard Bots RO1, inheriting from sbot_ro1_mock and adding MuJoCo via picknik_mujoco_ros.</description>
+  <maintainer email="sanchit.badamikar@picknik.ai">Sanchit Badamikar</maintainer>
+  <license>BSD-3-Clause</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <exec_depend>standard_bots_description</exec_depend>
+  <exec_depend>sbot_ro1_mock</exec_depend>
+  <exec_depend>picknik_mujoco_ros</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

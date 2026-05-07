@@ -9,6 +9,7 @@ Forked from [`PickNikRobotics/moveit_pro_empty_ws`](https://github.com/PickNikRo
 | Package | Robot | Hardware | Status |
 |---|---|---|---|
 | `sbot_ro1_mock` | Standard Bots RO1 (6-DOF, 18 kg payload, 1.3 m reach) | `mock_components/GenericSystem` | Builds, launches, motion verified |
+| `sbot_ro1_sim` | Standard Bots RO1 — physics simulation (inherits from `sbot_ro1_mock`) | `picknik_mujoco_ros/MujocoSystem` | Builds, launches, motion + Reset Simulation verified |
 
 ## Robot Description
 
@@ -35,7 +36,7 @@ git lfs pull
 Then point MoveIt Pro at the workspace and a config package:
 
 ```bash
-moveit_pro configure -w "$PWD" -c sbot_ro1_mock
+moveit_pro configure -w "$PWD" -c sbot_ro1_mock     # or sbot_ro1_sim for physics
 moveit_pro build
 moveit_pro run
 ```
@@ -44,10 +45,12 @@ Web UI: <http://localhost> (or the VM's IP if running in a Parallels VM).
 
 ## Test motions
 
-Two objectives are wired up for `sbot_ro1_mock`:
+Two motion objectives are wired up (and inherited by `sbot_ro1_sim`):
 
 - **Move to Home** — non-singular elbow-up tucked pose `[0.0, -0.6, 1.2, -0.6, 0.0, 0.0]`
 - **Move to Ready** — visibly distinct test pose `[0.7, -1.2, 1.6, -0.4, 0.5, 0.0]`
+
+`sbot_ro1_sim` also adds **Reset Simulation** (Simulation category) which deactivates trajectory controllers and snaps the MuJoCo state back to the `default` keyframe.
 
 Click either in the web UI's Motion category, or send via ROS action from inside the agent_bridge or drivers container:
 
