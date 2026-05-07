@@ -5,10 +5,7 @@
                name
                prefix
                use_mock_hardware:=^|false
-               mock_sensor_commands:=^|false
-               sim_gazebo_classic:=^|false
-               sim_gazebo:=^|false
-               simulation_controllers"
+               mock_sensor_commands:=^|false"
                >
 
     <ros2_control name="${name}" type="system">
@@ -17,13 +14,7 @@
           <plugin>mock_components/GenericSystem</plugin>
           <param name="mock_sensor_commands">${mock_sensor_commands}</param>
         </xacro:if>
-        <xacro:if value="${sim_gazebo_classic}">
-          <plugin>gazebo_ros2_control/GazeboSystem</plugin>
-        </xacro:if>
-        <xacro:if value="${sim_gazebo}">
-          <plugin>ign_ros2_control/IgnitionSystem</plugin>
-        </xacro:if>
-        <xacro:unless value="${use_mock_hardware or sim_gazebo_classic or sim_gazebo}">
+        <xacro:unless value="${use_mock_hardware}">
           <plugin>standard_bots_hardware_interface/SbotHW</plugin>
         </xacro:unless>
         <!-- for SbotHW, temporarily hard-code speed scaling like this. Change later. -->
@@ -147,29 +138,6 @@
       </xacro:if>
 
     </ros2_control>
-
-    <xacro:if value="$(arg sim_gazebo_classic)">
-      <!-- Gazebo plugins -->
-      <gazebo reference="world">
-      </gazebo>
-      <gazebo>
-        <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
-          <parameters>${simulation_controllers}</parameters>
-        </plugin>
-      </gazebo>
-    </xacro:if>
-
-    <xacro:if value="$(arg sim_gazebo)">
-      <!-- Gazebo plugins -->
-      <gazebo reference="world">
-      </gazebo>
-      <gazebo>
-        <plugin filename="libign_ros2_control-system.so" name="ign_ros2_control::IgnitionROS2ControlPlugin">
-          <parameters>${simulation_controllers}</parameters>
-          <controller_manager_node_name>${prefix}controller_manager</controller_manager_node_name>
-        </plugin>
-      </gazebo>
-    </xacro:if>
 
   </xacro:macro>
 </robot>

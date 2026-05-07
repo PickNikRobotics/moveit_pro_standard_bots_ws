@@ -2,11 +2,6 @@
 <robot xmlns:xacro="http://wiki.ros.org/xacro" name="sbot">
   <xacro:arg name="use_fake_hardware" default="true"/>
   <xacro:arg name="prefix" default=""/>
-  <xacro:arg name="use_mock_hardware" default="true"/>
-  <xacro:arg name="mock_sensor_commands" default="false"/>
-  <xacro:arg name="sim_gazebo_classic" default="false"/>
-  <xacro:arg name="sim_gazebo" default="false"/>
-  <xacro:arg name="simulation_controllers" default=""/>
 
   <link name="world"/>
 
@@ -27,8 +22,5 @@
     name="SbotRO1System"
     prefix="$(arg prefix)"
     use_mock_hardware="$(arg use_fake_hardware)"
-    mock_sensor_commands="$(arg mock_sensor_commands)"
-    sim_gazebo_classic="$(arg sim_gazebo_classic)"
-    sim_gazebo="$(arg sim_gazebo)"
-    simulation_controllers="$(arg simulation_controllers)"/>
+    mock_sensor_commands="false"/>
 </robot>
